@@ -24,8 +24,27 @@ Watchスタート
 
 expressの追加   
 `yarn add express`  
-`yarn add @types/express`
+
+
 
 @todo  
+
+まずはTypeScirpt化  
+https://ics.media/entry/4682/
+
+`yarn add @types/node`
+`yarn add @types/express`  
+
+自動再起動ツール nodemon
+`yarn add nodemon`
+
+
+
 次はSQLITEを入れてみてデプロイまでやってみる  
 https://expressjs.com/ja/guide/database-integration.html#sqlite
+https://qiita.com/tashxii/items/7c86f39fced68ea9903d
+
+# 2019/09/17
+
+Sqlite3を入れてDBの作成はできるがInsertが失敗する  
+DataBaseがOpenできずにエラーになる  
