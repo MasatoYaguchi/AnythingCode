@@ -1,0 +1,13 @@
+{
+  "name": "nodeFileChecker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "ローカルファイルのチェック",
+  "author": "M.Yaguchi",
+  "dependencies": {
+    "@types/node": "^13.1.6",
+    "ts-node": "^8.6.1",
+    "typescript": "^3.7.4"
+  }
+}
