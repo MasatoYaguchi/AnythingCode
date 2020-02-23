@@ -3,6 +3,7 @@ export class GamePadManager {
   private isGamePad: boolean = false;
   private circleDiv: HTMLDivElement = document.createElement("div");
   private logDiv: HTMLDivElement = document.createElement("div");
+  private addPosition: number = 4;
 
   constructor() {
     // var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
@@ -78,7 +79,7 @@ export class GamePadManager {
 
   }
 
-  private addPosition: number = 4;
+
 
   private moveCircle(point: { x: number, y: number }) {
     let x = parseInt(this.circleDiv.style.left || "0");
