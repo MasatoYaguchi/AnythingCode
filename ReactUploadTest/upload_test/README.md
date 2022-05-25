@@ -1,3 +1,14 @@
+# AntDesignのUpLoadコンポーネントテスト
+
+https://ant.design/components/upload/
+
+## 開始
+```bash
+cd upload_test
+yarn install
+yarn start
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
