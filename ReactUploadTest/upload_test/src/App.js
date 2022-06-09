@@ -40,7 +40,7 @@ const App = () => {
   const handleCancel = () => setPreviewVisible(false);
 
   const handlePreview = async (file) => {
-    console.log("handlePreview", file);
+    console.log("handlePreview");
 
     file.preview = await getBase64(file.originFileObj);
 
@@ -49,22 +49,22 @@ const App = () => {
     setPreviewTitle(file.name);
   };
 
-  const handleChange = ({ fileList: newFileList }) => {
-    console.log("handleChange")
-    if (newFileList.length > 5) {
-      setFileList([]);
-      message.error("error!");
-      console.log(message.config);
+  const handleChange = ({ file: newFile, fileList: newFileList }) => {
+    const uid = newFileList[newFileList.length - 1]?.uid
+    console.log(newFile.uid, uid);
 
-    } else {
-      setFileList(newFileList);
+    if (newFile.uid === uid && newFileList.length > 5) {
+      message.error("error!");
+      setFileList(fileList);
+      return;
     }
 
+    setFileList(newFileList);
   }
+
 
   const beforeUpload = async (file, fileList) => {
     return new Promise(resolve => {
-      console.log(file, fileList, Upload.LIST_IGNORE);
       // trueならactionに指定した箇所にアップロードする
       resolve(false);
     });
@@ -130,10 +130,9 @@ const App = () => {
         onSuccess={onSuccess}
         onError={onError}
         onRemove={onRemove}
-        onDownload={true}
         itemRender={itemRender}
       >
-        {fileList.length >= 15 ? null : uploadButton}
+        {fileList.length >= 5 ? null : uploadButton}
       </Upload>
       {allRemove}
       <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
