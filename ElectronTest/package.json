@@ -5,7 +5,7 @@
   "author": "M.Yaguchi",
   "license": "MIT",
   "dependencies": {
-    "electron": "^13.6.6",
+    "electron": "^15.5.5",
     "parcel-bundler": "^1.12.4",
     "typescript": "^3.9.7"
   },
