@@ -1,0 +1,12 @@
+{
+  "name": "Test",
+  "version": "0.0.2",
+  "manifest_version": 3,
+  "description": "Test Chrome Extension",
+  "content_scripts": [{
+    "matches": ["https://*.yahoo.co.jp/*"],
+    "js": [
+      "content.js"
+    ]
+  }]
+}
