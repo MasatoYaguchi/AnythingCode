@@ -54,7 +54,7 @@ const TestModal = () => {
       >
         <div style={{ marginTop: 20 }}>
           <Typography style={{ marginBottom: 10, fontWeight: "bold" }}>
-            予約投稿日時を入力
+            日時を入力
           </Typography>
           <DatePicker value={publishStartAt} onChange={onChangeDate} />
           <TimePicker
@@ -70,7 +70,7 @@ const TestModal = () => {
             target="_blank"
             style={{ textDecoration: "underline" }}
           >
-            ▶ 予約中投稿一覧
+            ▶ Link
           </a>
         </div>
       </Modal>
@@ -78,10 +78,10 @@ const TestModal = () => {
   );
 };
 
+
+
 const App = () => {
   const [publishStartAt, setPublishStartAt] = useState<Moment>();
-
-
 
   const userAgent = () => {
     return navigator.userAgent;
@@ -102,21 +102,21 @@ const App = () => {
 
     // focusが外れた時
     const onBlur = (data: any) => {
-      console.log("onBlur", data);
       if (selectTime !== publishStartAt) {
-        console.log("valueを書き換える");
         setPublishStartAt(selectTime);
       }
     };
-
 
     const inputRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
       console.log(inputRef.current);
 
-      inputRef.current?.getElementsByClassName("input");
-      // inputRef.current
-    }, []);
+      const input = inputRef.current?.getElementsByClassName("input");
+      if (!input) return;
+      for (const iterator of input) {
+        console.log(iterator);
+      }
+    }, [inputRef]);
 
     return (
       <div className="container">
