@@ -3,7 +3,7 @@ console.log(`load expansion test ${location.href}`);
 
 /**
  * ヤフオクのa要素があればクリック
- * @returns 
+ * @returns
  */
 const auctionsClick = () => {
     const linkElementArray = document.body.getElementsByTagName("a");
@@ -68,7 +68,7 @@ const mutationCallback = (mutationsList, observer) => {
         if (mutation.type === 'childList') {
             console.log(`子要素変更${mutation.addedNodes}`);
         }
-        // 属性変更時 CSSの変更とか取得可能 
+        // 属性変更時 CSSの変更とか取得可能
         else if (mutation.type === 'attributes') {
             console.log(`属性変更 ${mutation.attributeName}`);
         }
@@ -83,13 +83,74 @@ const observer = new MutationObserver(mutationCallback);
 observer.observe(targetNode, config);
 
 
+
+
+
+/**
+ * requestAnimationFrameを利用したTickerとsetInterValの比較
+ */
+
+const tickerEvent = "tick";
+const ticker = (duration) => {
+    let previousTimeStamp;
+    const dispatchElement = document.createElement("p");
+    const event = new Event(tickerEvent);
+    function step(timestamp) {
+        if (previousTimeStamp === undefined) {
+            previousTimeStamp = timestamp;
+        }
+
+        const elapsed = timestamp - previousTimeStamp;
+        if (elapsed >= duration) {
+            previousTimeStamp = timestamp;
+            dispatchElement.dispatchEvent(event);
+        }
+        window.requestAnimationFrame(step);
+    }
+
+    window.requestAnimationFrame(step);
+    return dispatchElement;
+}
+
+const duration = 1000;
+const tick = ticker(duration);
+let start = performance.now();
+const timeCount = (element) => {
+    const time = performance.now() - start;
+    // console.log(time);
+    element.textContent = `${time.toLocaleString()}ms`;
+}
+
+
+const element = document.getElementById("main");
+tick.addEventListener(tickerEvent, () => {
+    timeCount(element);
+});
+const element2 = document.getElementById("main2");
+let interval = setInterval(() => {
+    timeCount(element2);
+}, duration);
+
+
 document.addEventListener("keyup", (e) => {
     switch (e.key) {
         case "1":
             auctionsClick();
             break;
+        case "2":
+            if (interval === undefined) {
+                interval = setInterval(() => {
+                    timeCount(element2);
+                }, duration);
+
+            } else {
+                clearInterval(interval);
+                interval = undefined;
+            }
+            break;
 
         default:
+            console.log(e.key);
             break;
     }
 });
